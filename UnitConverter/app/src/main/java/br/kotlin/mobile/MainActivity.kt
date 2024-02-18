@@ -3,9 +3,14 @@ package br.kotlin.mobile
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -21,7 +26,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             UnitConverterTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
                     UnitConverter()
                 }
             }
@@ -38,13 +46,24 @@ fun UnitConverter() {
 
         })
         Row {
+            Box {
+                Button(onClick = { /*TODO*/ }) {
+                    Text("Select")
+                    Icon(Icons.Default.ArrowDropDown, contentDescription = "Arrow Down")
+                }
+            }
+            Box {
+                Button(onClick = { /*TODO*/ }) {
+                    Text("Select")
+                    Icon(Icons.Default.ArrowDropDown, contentDescription = "Arrow Down")
+                }
+            }
             //Here all the UI elements will be stacked next each other
-            Text("Result: ")
+
         }
+        Text("Result: ")
     }
 }
-
-
 
 @Preview(showBackground = true)
 @Composable
