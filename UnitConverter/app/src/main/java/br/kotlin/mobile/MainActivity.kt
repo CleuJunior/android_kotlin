@@ -10,9 +10,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -62,13 +65,53 @@ fun UnitConverter() {
                     Text("Select")
                     Icon(Icons.Default.ArrowDropDown, contentDescription = "Arrow Down")
                 }
+                DropdownMenu(expanded = false, onDismissRequest = { }) {
+                    DropdownMenuItem(
+                        text = { Text("Centimeters") },
+                        onClick = { }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Meters") },
+                        onClick = { }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Feet") },
+                        onClick = { }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Millimeters") },
+                        onClick = { }
+                    )
+                }
             }
+
+            Spacer(modifier = Modifier.width(16.dp))
+
             Box {
                 Button(onClick = { /*TODO*/ }) {
                     Text("Select")
                     Icon(Icons.Default.ArrowDropDown, contentDescription = "Arrow Down")
                 }
+                DropdownMenu(expanded = false, onDismissRequest = { }) {
+                    DropdownMenuItem(
+                        text = { Text("Centimeters") },
+                        onClick = { }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Meters") },
+                        onClick = { }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Feet") },
+                        onClick = { }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Millimeters") },
+                        onClick = { }
+                    )
+                }
             }
+
             //Here all the UI elements will be stacked next each other
 
         }
