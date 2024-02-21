@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.kotlin.mobile.ui.theme.UnitConverterTheme
+import kotlin.math.roundToInt
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +61,13 @@ fun UnitConverter() {
     var oExpended by remember { mutableStateOf(false) }
     val conversionFactor = remember { mutableDoubleStateOf(0.01) }
 
+    fun convertUnits() {
+        //?: - elvis operator
+        val inputValueDouble = inputValue.toDoubleOrNull() ?: 0.0
+        val result = (inputValueDouble * conversionFactor.doubleValue * 100.0).roundToInt() / 100.0
+        outputValue = result.toString()
+    }
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -71,30 +79,50 @@ fun UnitConverter() {
         OutlinedTextField(value = inputValue, onValueChange = {
 
             //Here goes what should happen, when the Value of our OutlinedTextField changes
-        }, label = { Text(text = "Enter Value")})
+        }, label = { Text(text = "Enter Value") })
         Spacer(modifier = Modifier.height(16.dp))
         Row {
             Box {
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = { iExpended = true }) {
                     Text("Select")
                     Icon(Icons.Default.ArrowDropDown, contentDescription = "Arrow Down")
                 }
-                DropdownMenu(expanded = false, onDismissRequest = { }) {
+                DropdownMenu(expanded = iExpended, onDismissRequest = { iExpended = false }) {
                     DropdownMenuItem(
                         text = { Text("Centimeters") },
-                        onClick = { }
+                        onClick = {
+                            iExpended = false
+                            inputUnity = "Centimeters"
+                            conversionFactor.doubleValue = 0.01
+                            convertUnits()
+                        }
                     )
                     DropdownMenuItem(
                         text = { Text("Meters") },
-                        onClick = { }
+                        onClick = {
+                            iExpended = false
+                            inputUnity = "Meters"
+                            conversionFactor.doubleValue = 1.0
+                            convertUnits()
+                        }
                     )
                     DropdownMenuItem(
                         text = { Text("Feet") },
-                        onClick = { }
+                        onClick = {
+                            iExpended = false
+                            inputUnity = "Feet"
+                            conversionFactor.doubleValue = 0.3048
+                            convertUnits()
+                        }
                     )
                     DropdownMenuItem(
                         text = { Text("Millimeters") },
-                        onClick = { }
+                        onClick = {
+                            iExpended = false
+                            inputUnity = "Millimeters"
+                            conversionFactor.doubleValue = 0.001
+                            convertUnits()
+                        }
                     )
                 }
             }
@@ -102,11 +130,11 @@ fun UnitConverter() {
             Spacer(modifier = Modifier.width(16.dp))
 
             Box {
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = { oExpended = true }) {
                     Text("Select")
                     Icon(Icons.Default.ArrowDropDown, contentDescription = "Arrow Down")
                 }
-                DropdownMenu(expanded = false, onDismissRequest = { }) {
+                DropdownMenu(expanded = oExpended, onDismissRequest = { oExpended = false }) {
                     DropdownMenuItem(
                         text = { Text("Centimeters") },
                         onClick = { }
